@@ -1,11 +1,22 @@
 import { AntDesign, Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { Image, Pressable, Text, View } from 'react-native';
-import { HomePropsStack } from '../../types/HomeStackParam';
+import { Alert, Image, Pressable, Text, View } from 'react-native';
+import { LoginPropsStack } from '../../types/LoginStackParam';
+import { useContext } from 'react';
+import AuthContext from '../../contexts/AuthContext';
+import { ToastAlerta } from '../../utils/ToastAlerta';
 
 export default function NavBar() {
 
-    const navigation = useNavigation<HomePropsStack>();
+    const navigation = useNavigation<LoginPropsStack>();
+
+    const { handleLogout } = useContext(AuthContext)
+
+    function logout() {
+        handleLogout()
+        ToastAlerta('O usuário foi desconectado com sucesso!', 'info')
+        navigation.navigate('Login')
+    }
 
     return (
         <View className='w-full h-1/6 flex flex-col items-center justify-center bg-indigo-900'>
@@ -24,7 +35,7 @@ export default function NavBar() {
                 </Text>
 
                 <Pressable
-                    onPress={() => navigation.navigate('Home')}
+                    onPress={() => logout()}
                     className='flex justify-center'
                 >
                     <AntDesign

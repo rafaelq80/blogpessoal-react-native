@@ -2,9 +2,10 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { TabParam } from "./TabParam";
 
-export type HomeStackParam = {
+export type LoginStackParam = {
     Main: NavigatorScreenParams<TabParam>;
-    Home: undefined;
+    Login: undefined;
+    Cadastro: undefined;
 };
 
-export type HomePropsStack = NativeStackNavigationProp<HomeStackParam>
+export type LoginPropsStack = NativeStackNavigationProp<LoginStackParam>
